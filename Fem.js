@@ -1532,7 +1532,7 @@ add_callback( "player_hurt", "hit_log" )
 add_callback( "player_death", "killsay" )
 add_callback("round_start", "buy_bot")
 add_callback("on_render","render")
-if(uid==3133||uid==19494)
+if(uid==3133||uid==9796)
 {
   add_callback("unload","on_unload")
   add_callback( "player_hurt", "hit_log" )
