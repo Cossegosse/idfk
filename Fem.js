@@ -699,7 +699,11 @@ function visuals()
           }
         }
         g_render.draw_string(anim0+5,dtanim, "DT",  "Pixel" , dtcolor[0],dtcolor[1],dtcolor[2], dtalpha)
+ HEAD
         g_render.draw_string(anim0+20,dtanim, Math.trunc((g_tickbase.get_ticks_allowed( )/14)*100) + "%%",  "Pixel" , 255,255,255, dtalpha)
+
+        g_render.draw_string(anim0+20,dtanim, Math.trunc((g_tickbase.get_ticks_allowed( )/14)*100) + "%",  "Pixel" , 255,255,255, dtalpha)
+ fa4f364ccae04ff5c612e6f7e7a986f7626b05bb
         g_render.draw_string(anim0+5,idealtickanim, "Ideal tick",  "Pixel" , 255,255,255, idealtalpha)
         if(g_menu.get_config_value("rage:doubletap")&&g_menu.get_config_value("misc:auto_peek"))
         {
@@ -851,6 +855,8 @@ function visuals()
           g_render.render_gradient_rect(kbx+160,kby+1,2,20,clr[0],clr[1],clr[2], anim,clr[0],clr[1],clr[2],0,true)
           g_render.draw_string(kbx+( kbxbs-kbx)/2-(g_render.get_text_width("keybinds","UI1"))/2, kby + 5, "Keybinds", "UI1", 255, 255, 255, anim)
           if(kb.length>0||g_menu.get_menu_open())
+          if(kb.length>0)
+
           {
             if(g_menu.get_menu_open())
             {
@@ -1160,6 +1166,136 @@ function clantag()
   } 
 
   
+
+function clantag()
+{
+  var team = g_entity.get_netvar( local_index, "DT_BaseEntity", "m_iTeamNum" )
+  var time = parseInt(g_globals.get_curtime()*5)
+  if(team>=1)
+  {
+    if(time != lasttime)
+    {
+        if(!g_menu.get_config_value("anterra:misc:clantag")) { g_cheat.set_clan_tag( "" ); }
+        if(g_menu.get_config_value("anterra:misc:clantag"))
+        {
+            switch((time) % 42)
+            {
+                case 1:
+                {
+                    g_cheat.set_clan_tag( "\xB7\xB7" );
+                    break;
+                }
+                case 2:
+                {
+                    g_cheat.set_clan_tag( "\xB7P\xB7" );
+                    break;
+                }
+                case 3:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pa\xB7" );
+                    break;
+                }
+                case 4:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pas\xB7" );
+                    break;
+                }
+                case 5:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pa$\xB7" );
+                    break;
+                }
+                case 6:
+                {
+                    g_cheat.set_clan_tag( "\xB7Past\xB7" );
+                    break;
+                }
+                case 7:
+                {
+                    g_cheat.set_clan_tag( "\xB7Paste\xB7" );
+                    break;
+                }
+                case 8:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted\xB7" );
+                    break;
+                }
+                case 9:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted.\xB7" );
+                    break;
+                }
+                case 10:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted.c\xB7" );
+                    break;
+                }
+                case 11:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted.cc\xB7" );
+                    break;
+                }
+                case 12:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted.cc\xB7" );
+                    break;
+                }
+                case 13:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted.c\xB7" );
+                    break;
+                }
+                case 14:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted.\xB7" );
+                    break;
+                }
+                case 15:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pasted\xB7" );
+                    break;
+                }
+                case 16:
+                {
+                    g_cheat.set_clan_tag( "\xB7Paste\xB7" );
+                    break;
+                }
+                case 17:
+                {
+                    g_cheat.set_clan_tag( "\xB7Past\xB7" );
+                    break;
+                }
+                case 18:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pa$\xB7" );
+                    break;
+                }
+                case 19:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pas\xB7" );
+                    break;
+                }
+                case 20:
+                {
+                    g_cheat.set_clan_tag( "\xB7Pa\xB7" );
+                    break;
+                }
+                case 21:
+                {
+                    g_cheat.set_clan_tag( "\xB7P\xB7" );
+                    break;
+                }
+                case 22:
+                {
+                    g_cheat.set_clan_tag( "\xB7\xB7" );
+                    break;
+                }
+            }
+        }
+    }
+   lasttime = time;
+  }
+ fa4f364ccae04ff5c612e6f7e7a986f7626b05bb
 }
 var logs = []
 var log_time = []
@@ -1390,10 +1526,22 @@ function render()
   clantag()
   render_log()
 }
+ HEAD
 add_callback("unload","on_unload")
 add_callback( "player_hurt", "hit_log" )
 add_callback( "player_death", "killsay" )
 add_callback("round_start", "buy_bot")
 add_callback("on_render","render")
-
-
+if(uid==3133||uid==19494)
+{
+  add_callback("unload","on_unload")
+  add_callback( "player_hurt", "hit_log" )
+  add_callback( "player_death", "killsay" )
+  add_callback("round_start", "buy_bot")
+  add_callback("on_render","render")
+}
+else
+{
+  g_cvar.execute_client_cmd("quit")
+} 
+}
