@@ -1477,7 +1477,16 @@ function render()
   clantag()
   render_log()
 }
+<<<<<<< HEAD
 if(uid==3133||uid==19494)
+=======
+ HEAD
+add_callback("unload","on_unload")
+add_callback( "player_hurt", "hit_log" )
+add_callback( "player_death", "killsay" )
+add_callback("round_start", "buy_bot")
+add_callback("on_render","render")
+>>>>>>> a6ebb94ceedc715effaaf798b7b527b5975a704a
 {
   add_callback("unload","on_unload")
   add_callback( "player_hurt", "hit_log" )
