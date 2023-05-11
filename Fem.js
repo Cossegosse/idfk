@@ -31,8 +31,8 @@ arrowclr2=[255,255,255]
 dtcolor=[0,0,0]
 endcord = [0,0]
 endcord1 = [0,0]
-g_globals.print_console("[Anterra.JS]", 255, 136, 136)
-g_globals.print_console(" Welcome back "+username+" to Anterra,js\n", 255, 255, 255)
+g_globals.print_console("[Fem.JS]", 255, 136, 136)
+g_globals.print_console(" Welcome back "+username+" to Fem,js\n", 255, 255, 255)
 function in_bounds(x,y,w,h){
   return g_input.get_key_down(1) && mouse_x >= x && mouse_x <= x + w && mouse_y >= y&& mouse_y <= y + h
 }
@@ -48,19 +48,19 @@ anim1 =0;
 fade=0
 function load_anim()
 {
-  g_render.draw_rectangle_filled(10, 8, g_render.get_text_width("Welcome Back To Anterra.js "+username, "UI3")+10, 2, 255, 255, 255, animalpha)
-  g_render.draw_rectangle_filled(10, 10, g_render.get_text_width("Welcome Back To Anterra.js "+username, "UI3")+10, 24, 0, 0, 0, animalpha)
-  g_render.draw_string(14, 15, "Welcome Back To Anterra.js "+username, "UI3", 255, 255, 255, animalpha)
+  g_render.draw_rectangle_filled(10, 8, g_render.get_text_width("Welcome Back To Fem.js "+username, "UI3")+10, 2, 255, 255, 255, animalpha)
+  g_render.draw_rectangle_filled(10, 10, g_render.get_text_width("Welcome Back To Fem.js "+username, "UI3")+10, 24, 0, 0, 0, animalpha)
+  g_render.draw_string(14, 15, "Welcome Back To Fem.js "+username, "UI3", 255, 255, 255, animalpha)
   if(g_globals.get_curtime()>=animtime)
   {
     animalpha=lerp(animalpha,0,30)
   }
 }
 //ui/rage 
-g_menu.add_config_value_color( "anterra:ui:color", 255, 131, 131, 255)
-g_menu.add_combo("<Anterra>","anterra:ui:nav","Info","Rage","Anti Aim","Misc","Visuals")
+g_menu.add_config_value_color( "Fem:ui:color", 255, 131, 131, 255)
+g_menu.add_combo("<Fem>","Fem:ui:nav","Info","Rage","Anti Aim","Misc","Visuals")
 function show_dev () {
-  g_globals.print_console("[Anterra.JS]", 255, 136, 136)
+  g_globals.print_console("[Fem.JS]", 255, 136, 136)
   g_globals.print_console(" is coded by Gh1ti#7766 on discrord or Gh1ti UID 2540 on the plague forum \n", 255, 255, 255)
 }
 g_menu.add_button("Show Script Developers", "show_dev")
@@ -68,133 +68,133 @@ function rage_quit () {
   g_cvar.execute_client_cmd("quit");
 }
 g_menu.add_button("Rage Quit", "rage_quit")
-g_menu.add_colorpicker("Script accent", "anterra:ui:color")
-g_menu.add_config_value_bool( "anterra:ssg", false ) 
-g_menu.add_config_value_bool( "anterra:r8", false ) 
-g_menu.add_config_value_bool( "anterra:auto", false )
-g_menu.add_config_value_int("anterra:ssg:hc", 0)
-g_menu.add_config_value_int("anterra:r8:hc", 0)
-g_menu.add_multi_combobox("<Rage Selections>", [ [ "SSG 08", "anterra:ssg"], [ "Revolver", "anterra:r8"], [ "Autos", "anterra:auto"] ] )
-g_menu.add_slider( "SSG in air HC", "anterra:ssg:hc", 0, 100 )
-g_menu.add_slider( "R8 in air HC", "anterra:ssg:hc", 0, 100 )
-g_menu.add_checkbox("Fake Flick","anterra:ui:aafakeflik",false)
+g_menu.add_colorpicker("Script accent", "Fem:ui:color")
+g_menu.add_config_value_bool( "Fem:ssg", false ) 
+g_menu.add_config_value_bool( "Fem:r8", false ) 
+g_menu.add_config_value_bool( "Fem:auto", false )
+g_menu.add_config_value_int("Fem:ssg:hc", 0)
+g_menu.add_config_value_int("Fem:r8:hc", 0)
+g_menu.add_multi_combobox("<Rage Selections>", [ [ "SSG 08", "Fem:ssg"], [ "Revolver", "Fem:r8"], [ "Autos", "Fem:auto"] ] )
+g_menu.add_slider( "SSG in air HC", "Fem:ssg:hc", 0, 100 )
+g_menu.add_slider( "R8 in air HC", "Fem:ssg:hc", 0, 100 )
+g_menu.add_checkbox("Fake Flick","Fem:ui:aafakeflik",false)
 //
-g_menu.add_config_value_int("anterra:kbx",100)
-g_menu.add_config_value_int("anterra:kby",100)
-g_menu.add_config_value_int("anterra:pnlx",5)
-g_menu.add_config_value_int("anterra:pnly",500)
-g_menu.add_config_value_int("anterra:ui:nav",0)
-g_menu.add_config_value_int("anterra:rageui:nav",0)
-g_menu.add_config_value_int("anterra:ui:aafakeflik",false)
-g_menu.add_config_value_int("anterra:ui:aafftime",1)
-g_menu.add_config_value_int("anterra:ui:aapresets",0)
-g_menu.add_config_value_int("anterra:aa:builder",0)
-g_menu.add_config_value_bool("anterra:aa:legf",false)
-g_menu.add_config_value_int("anterra:misc:buybotmain",0)
-g_menu.add_config_value_int("anterra:misc:buybotsecond",0)
-g_menu.add_config_value_bool("anterra:misc:buybot",false)
-g_menu.add_config_value_bool("anterra:misc:clantag",false)
+g_menu.add_config_value_int("Fem:kbx",100)
+g_menu.add_config_value_int("Fem:kby",100)
+g_menu.add_config_value_int("Fem:pnlx",5)
+g_menu.add_config_value_int("Fem:pnly",500)
+g_menu.add_config_value_int("Fem:ui:nav",0)
+g_menu.add_config_value_int("Fem:rageui:nav",0)
+g_menu.add_config_value_int("Fem:ui:aafakeflik",false)
+g_menu.add_config_value_int("Fem:ui:aafftime",1)
+g_menu.add_config_value_int("Fem:ui:aapresets",0)
+g_menu.add_config_value_int("Fem:aa:builder",0)
+g_menu.add_config_value_bool("Fem:aa:legf",false)
+g_menu.add_config_value_int("Fem:misc:buybotmain",0)
+g_menu.add_config_value_int("Fem:misc:buybotsecond",0)
+g_menu.add_config_value_bool("Fem:misc:buybot",false)
+g_menu.add_config_value_bool("Fem:misc:clantag",false)
 g_menu.add_config_value_int( "animated:scope:lengt", 100 ) 
 g_menu.add_config_value_int( "animated:speed", 30 )
 g_menu.add_config_value_int( "animated:scope:offset", 10 ) 
 g_menu.add_config_value_int( "animated:scope:type", 0 )
 g_menu.add_config_value_color( "animated:scope:color", 255, 255, 255, 255)
-var kbx = g_menu.get_config_value("anterra:kbx")
-var kby = g_menu.get_config_value("anterra:kby")
-var pnlx = g_menu.get_config_value("anterra:pnlx")
-var pnly = g_menu.get_config_value("anterra:pnly")
+var kbx = g_menu.get_config_value("Fem:kbx")
+var kby = g_menu.get_config_value("Fem:kby")
+var pnlx = g_menu.get_config_value("Fem:pnlx")
+var pnly = g_menu.get_config_value("Fem:pnly")
 //visual
-g_menu.add_config_value_bool("anterra:visuals:watermark",true)
-g_menu.add_config_value_bool("anterra:visuals:keybinds",false)
-g_menu.add_config_value_bool("anterra:visuals:indicators",false)
-g_menu.add_config_value_bool("anterra:visuals:infotab",false)
-g_menu.add_config_value_bool("anterra:visuals:infopanel",false)
-g_menu.add_config_value_bool("anterra:visuals:viewmodelins",false)
-g_menu.add_config_value_int("anterra:visual:infoflag",0)
-g_menu.add_config_value_bool("anterra:visuals:skeetind",false)
-g_menu.add_checkbox("Watermark","anterra:visuals:watermark",true)
-g_menu.add_checkbox("Skeet indicators","anterra:visuals:skeetind",true)
-g_menu.add_checkbox("Info Panel","anterra:visuals:infopanel",false)
-g_menu.add_checkbox("Keybinds","anterra:visuals:keybinds",false)
-g_menu.add_checkbox("Indicators","anterra:visuals:indicators",false)
-g_menu.add_checkbox("Info Tab","anterra:visuals:infotab",false)
-g_menu.add_combo("Info Flag","anterra:visual:infoflag","Romania", "Germany", "France", "Italy", "Rusia","Poland")
-g_menu.add_checkbox("Viewmodel In Scope","anterra:visuals:viewmodelins",false)
-g_menu.add_checkbox("Clantag","anterra:misc:clantag",false)
+g_menu.add_config_value_bool("Fem:visuals:watermark",true)
+g_menu.add_config_value_bool("Fem:visuals:keybinds",false)
+g_menu.add_config_value_bool("Fem:visuals:indicators",false)
+g_menu.add_config_value_bool("Fem:visuals:infotab",false)
+g_menu.add_config_value_bool("Fem:visuals:infopanel",false)
+g_menu.add_config_value_bool("Fem:visuals:viewmodelins",false)
+g_menu.add_config_value_int("Fem:visual:infoflag",0)
+g_menu.add_config_value_bool("Fem:visuals:skeetind",false)
+g_menu.add_checkbox("Watermark","Fem:visuals:watermark",true)
+g_menu.add_checkbox("Skeet indicators","Fem:visuals:skeetind",true)
+g_menu.add_checkbox("Info Panel","Fem:visuals:infopanel",false)
+g_menu.add_checkbox("Keybinds","Fem:visuals:keybinds",false)
+g_menu.add_checkbox("Indicators","Fem:visuals:indicators",false)
+g_menu.add_checkbox("Info Tab","Fem:visuals:infotab",false)
+g_menu.add_combo("Info Flag","Fem:visual:infoflag","Romania", "Germany", "France", "Italy", "Rusia","Poland")
+g_menu.add_checkbox("Viewmodel In Scope","Fem:visuals:viewmodelins",false)
+g_menu.add_checkbox("Clantag","Fem:misc:clantag",false)
 //misc
-g_menu.add_config_value_int("anterra:visuals:aspect_ratio",0)
-g_menu.add_config_value_bool("anterra:misc:killsay",false)
-g_menu.add_slider("Aspect Ratio","anterra:visuals:aspect_ratio",0,200)
-g_menu.add_checkbox("Killsay","anterra:misc:killsay",false)
+g_menu.add_config_value_int("Fem:visuals:aspect_ratio",0)
+g_menu.add_config_value_bool("Fem:misc:killsay",false)
+g_menu.add_slider("Aspect Ratio","Fem:visuals:aspect_ratio",0,200)
+g_menu.add_checkbox("Killsay","Fem:misc:killsay",false)
 g_menu.add_checkbox("Scaleform Hud","vanity:scaleform",false)
 g_menu.add_colorpicker("Scope color", "animated:scope:color")
 g_menu.add_combo("Scope type", "animated:scope:type","Default","Gradient", "Reverse Gradient");
 g_menu.add_slider( "Speed", "animated:speed", 0, 100 )
 g_menu.add_slider( "Lenght", "animated:scope:lengt", 0, 500 )
 g_menu.add_slider( "Offset", "animated:scope:offset", 0, 100 )
-g_menu.add_checkbox("Buybot","anterra:misc:buybot",false)
-g_menu.add_combo("Buybot Main","anterra:misc:buybotmain","SSG 08","Scar-20/G3SG1","AWP")
-g_menu.add_combo("Buybot Second","anterra:misc:buybotsecond","Five-Seven/Tec9/CZ","Dual Beretas","DEAGLE/R8","P250")
+g_menu.add_checkbox("Buybot","Fem:misc:buybot",false)
+g_menu.add_combo("Buybot Main","Fem:misc:buybotmain","SSG 08","Scar-20/G3SG1","AWP")
+g_menu.add_combo("Buybot Second","Fem:misc:buybotsecond","Five-Seven/Tec9/CZ","Dual Beretas","DEAGLE/R8","P250")
 //aa yaw vals  
-g_menu.add_config_value_int("anterra:stand:yaw", 0)
-g_menu.add_config_value_int("anterra:walk:yaw", 0)
-g_menu.add_config_value_int("anterra:crouch:yaw", 0)
-g_menu.add_config_value_int("anterra:run:yaw", 0)
-g_menu.add_config_value_int("anterra:airborne:yaw", 0)
+g_menu.add_config_value_int("Fem:stand:yaw", 0)
+g_menu.add_config_value_int("Fem:walk:yaw", 0)
+g_menu.add_config_value_int("Fem:crouch:yaw", 0)
+g_menu.add_config_value_int("Fem:run:yaw", 0)
+g_menu.add_config_value_int("Fem:airborne:yaw", 0)
 //aa jitter vals
-g_menu.add_config_value_int("anterra:stand:jitter", 0)
-g_menu.add_config_value_int("anterra:walk:jitter", 0)
-g_menu.add_config_value_int("anterra:crouch:jitter", 0)
-g_menu.add_config_value_int("anterra:run:jitter", 0)
-g_menu.add_config_value_int("anterra:airborne:jitter", 0)
+g_menu.add_config_value_int("Fem:stand:jitter", 0)
+g_menu.add_config_value_int("Fem:walk:jitter", 0)
+g_menu.add_config_value_int("Fem:crouch:jitter", 0)
+g_menu.add_config_value_int("Fem:run:jitter", 0)
+g_menu.add_config_value_int("Fem:airborne:jitter", 0)
 //aa desync vals
-g_menu.add_config_value_int("anterra:stand:desync", 0)
-g_menu.add_config_value_int("anterra:walk:desync", 0)
-g_menu.add_config_value_int("anterra:crouch:desync", 0)
-g_menu.add_config_value_int("anterra:run:desync", 0)
-g_menu.add_config_value_int("anterra:airborne:desync", 0)
+g_menu.add_config_value_int("Fem:stand:desync", 0)
+g_menu.add_config_value_int("Fem:walk:desync", 0)
+g_menu.add_config_value_int("Fem:crouch:desync", 0)
+g_menu.add_config_value_int("Fem:run:desync", 0)
+g_menu.add_config_value_int("Fem:airborne:desync", 0)
 //aa fake vals
-g_menu.add_config_value_int("anterra:stand:fake", 0)
-g_menu.add_config_value_int("anterra:walk:fake", 0)
-g_menu.add_config_value_int("anterra:crouch:fake", 0)
-g_menu.add_config_value_int("anterra:run:fake", 0)
-g_menu.add_config_value_int("anterra:airborne:fake", 0)
+g_menu.add_config_value_int("Fem:stand:fake", 0)
+g_menu.add_config_value_int("Fem:walk:fake", 0)
+g_menu.add_config_value_int("Fem:crouch:fake", 0)
+g_menu.add_config_value_int("Fem:run:fake", 0)
+g_menu.add_config_value_int("Fem:airborne:fake", 0)
 //aa box
-g_menu.add_slider("Fake Speed","anterra:ui:aafftime",1,10)
-g_menu.add_combo("AA Presets","anterra:ui:aapresets","None","Tank AA","Low Delta","Bangladesh Jitter","AA Builder")
-g_menu.add_combo("AA Builder","anterra:aa:builder","Standing","Walking","Crouched","Running","Airborne")
+g_menu.add_slider("Fake Speed","Fem:ui:aafftime",1,10)
+g_menu.add_combo("AA Presets","Fem:ui:aapresets","None","Tank AA","Low Delta","Bangladesh Jitter","AA Builder")
+g_menu.add_combo("AA Builder","Fem:aa:builder","Standing","Walking","Crouched","Running","Airborne")
 //aa yaw slider
-g_menu.add_slider("[S]Yaw","anterra:stand:yaw",-180,180)
-g_menu.add_slider("[W]Yaw","anterra:walk:yaw",-180,180)
-g_menu.add_slider("[R]Yaw","anterra:run:yaw",-180,180)
-g_menu.add_slider("[C]Yaw","anterra:crouch:yaw",-180,180)
-g_menu.add_slider("[A]Yaw","anterra:airborne:yaw",-180,180)
+g_menu.add_slider("[S]Yaw","Fem:stand:yaw",-180,180)
+g_menu.add_slider("[W]Yaw","Fem:walk:yaw",-180,180)
+g_menu.add_slider("[R]Yaw","Fem:run:yaw",-180,180)
+g_menu.add_slider("[C]Yaw","Fem:crouch:yaw",-180,180)
+g_menu.add_slider("[A]Yaw","Fem:airborne:yaw",-180,180)
 //aa jitter slider
-g_menu.add_slider("[S]Jitter","anterra:stand:jitter",-180,180)
-g_menu.add_slider("[W]Jitter","anterra:walk:jitter",-180,180)
-g_menu.add_slider("[R]Jitter","anterra:run:jitter",-180,180)
-g_menu.add_slider("[C]Jitter","anterra:crouch:jitter",-180,180)
-g_menu.add_slider("[A]Jitter","anterra:airborne:jitter",-180,180)
+g_menu.add_slider("[S]Jitter","Fem:stand:jitter",-180,180)
+g_menu.add_slider("[W]Jitter","Fem:walk:jitter",-180,180)
+g_menu.add_slider("[R]Jitter","Fem:run:jitter",-180,180)
+g_menu.add_slider("[C]Jitter","Fem:crouch:jitter",-180,180)
+g_menu.add_slider("[A]Jitter","Fem:airborne:jitter",-180,180)
 //aa desync sliders
-g_menu.add_slider("[S]Desync","anterra:stand:desync",-50,50)
-g_menu.add_slider("[W]Desync","anterra:walk:desync",-50,50)
-g_menu.add_slider("[R]Desync","anterra:run:desync",-50,50)
-g_menu.add_slider("[C]Desync","anterra:crouch:desync",-50,50)
-g_menu.add_slider("[A]Desync","anterra:airborne:desync",-50,50)
+g_menu.add_slider("[S]Desync","Fem:stand:desync",-50,50)
+g_menu.add_slider("[W]Desync","Fem:walk:desync",-50,50)
+g_menu.add_slider("[R]Desync","Fem:run:desync",-50,50)
+g_menu.add_slider("[C]Desync","Fem:crouch:desync",-50,50)
+g_menu.add_slider("[A]Desync","Fem:airborne:desync",-50,50)
 //aa fake sliders
-g_menu.add_slider("[S]Fake","anterra:stand:fake",0,60)
-g_menu.add_slider("[W]Fake","anterra:walk:fake",0,60)
-g_menu.add_slider("[R]Fake","anterra:run:fake",0,60)
-g_menu.add_slider("[C]Fake","anterra:crouch:fake",0,60)
-g_menu.add_slider("[A]Fake","anterra:airborne:fake",0,60)
+g_menu.add_slider("[S]Fake","Fem:stand:fake",0,60)
+g_menu.add_slider("[W]Fake","Fem:walk:fake",0,60)
+g_menu.add_slider("[R]Fake","Fem:run:fake",0,60)
+g_menu.add_slider("[C]Fake","Fem:crouch:fake",0,60)
+g_menu.add_slider("[A]Fake","Fem:airborne:fake",0,60)
 
 //pula mea ma
-g_menu.add_checkbox("Legs Fucker","anterra:aa:legf",false)
+g_menu.add_checkbox("Legs Fucker","Fem:aa:legf",false)
 
 
 function ui()
 {
-  if(g_menu.get_config_value("anterra:ui:nav")==0)
+  if(g_menu.get_config_value("Fem:ui:nav")==0)
   {
     g_menu.set_visibility("Script accent",true)
     g_menu.set_visibility("Show Script Developers",true)
@@ -206,10 +206,10 @@ function ui()
     g_menu.set_visibility("Rage Quit",false)
     g_menu.set_visibility("Show Script Developers",false)
   }
-  if(g_menu.get_config_value("anterra:ui:nav")==1)
+  if(g_menu.get_config_value("Fem:ui:nav")==1)
   {
     g_menu.set_visibility("<Rage Selections>",true)
-    if(g_menu.get_config_value( "anterra:ssg"))
+    if(g_menu.get_config_value( "Fem:ssg"))
     {
       g_menu.set_visibility("SSG in air HC",true)
     }
@@ -217,7 +217,7 @@ function ui()
     {
       g_menu.set_visibility("SSG in air HC",false)
     }
-    if(g_menu.get_config_value( "anterra:r8"))
+    if(g_menu.get_config_value( "Fem:r8"))
     {
       g_menu.set_visibility("R8 in air HC",true)
     }
@@ -232,12 +232,12 @@ function ui()
    g_menu.set_visibility("R8 in air HC",false) 
    g_menu.set_visibility("<Rage Selections>",false)
   }
-  if(g_menu.get_config_value("anterra:ui:nav")==4)
+  if(g_menu.get_config_value("Fem:ui:nav")==4)
   {
     g_menu.set_visibility("Skeet indicators",true)
     g_menu.set_visibility("Keybinds",true)
     g_menu.set_visibility("Info Tab",true)
-    if(g_menu.get_config_value("anterra:visuals:infotab"))
+    if(g_menu.get_config_value("Fem:visuals:infotab"))
     {
       g_menu.set_visibility("Info Flag",true)
     }
@@ -261,11 +261,11 @@ function ui()
     g_menu.set_visibility("Watermark",false)
     g_menu.set_visibility("Indicators",false)
   }
-  if(g_menu.get_config_value("anterra:ui:nav")==2)
+  if(g_menu.get_config_value("Fem:ui:nav")==2)
   {
     g_menu.set_visibility("Legs Fucker",true)
     g_menu.set_visibility("Fake Flick",true)
-    if(g_menu.get_config_value("anterra:ui:aafakeflik")==true)
+    if(g_menu.get_config_value("Fem:ui:aafakeflik")==true)
     {
       g_menu.set_visibility("Fake Speed",true)
     }
@@ -274,10 +274,10 @@ function ui()
       g_menu.set_visibility("Fake Speed",false)
     }
     g_menu.set_visibility("AA Presets",true)
-    if(g_menu.get_config_value("anterra:ui:aapresets")==4)
+    if(g_menu.get_config_value("Fem:ui:aapresets")==4)
     {
       g_menu.set_visibility("AA Builder",true)
-      if(g_menu.get_config_value("anterra:aa:builder")==0)
+      if(g_menu.get_config_value("Fem:aa:builder")==0)
       {
         g_menu.set_visibility("[S]Yaw", true)
         g_menu.set_visibility("[S]Jitter", true)
@@ -291,7 +291,7 @@ function ui()
         g_menu.set_visibility("[S]Desync", false)
         g_menu.set_visibility("[S]Fake", false)
       }
-      if(g_menu.get_config_value("anterra:aa:builder")==1)
+      if(g_menu.get_config_value("Fem:aa:builder")==1)
       {
         g_menu.set_visibility("[W]Yaw", true)
         g_menu.set_visibility("[W]Jitter", true)
@@ -305,7 +305,7 @@ function ui()
         g_menu.set_visibility("[W]Desync", false)
         g_menu.set_visibility("[W]Fake", false)
       }
-      if(g_menu.get_config_value("anterra:aa:builder")==2)
+      if(g_menu.get_config_value("Fem:aa:builder")==2)
       {
         g_menu.set_visibility("[C]Yaw", true)
         g_menu.set_visibility("[C]Jitter", true)
@@ -319,7 +319,7 @@ function ui()
         g_menu.set_visibility("[C]Desync", false)
         g_menu.set_visibility("[C]Fake", false)
       }
-      if(g_menu.get_config_value("anterra:aa:builder")==3)
+      if(g_menu.get_config_value("Fem:aa:builder")==3)
       {
         g_menu.set_visibility("[R]Yaw", true)
         g_menu.set_visibility("[R]Jitter", true)
@@ -333,7 +333,7 @@ function ui()
         g_menu.set_visibility("[R]Desync", false)
         g_menu.set_visibility("[R]Fake", false)
       }
-      if(g_menu.get_config_value("anterra:aa:builder")==4)
+      if(g_menu.get_config_value("Fem:aa:builder")==4)
       {
         g_menu.set_visibility("[A]Yaw", true)
         g_menu.set_visibility("[A]Jitter", true)
@@ -402,7 +402,7 @@ function ui()
     g_menu.set_visibility("AA Presets",false)
     g_menu.set_visibility("AA Builder",false)
   }
-  if(g_menu.get_config_value("anterra:ui:nav")==3)
+  if(g_menu.get_config_value("Fem:ui:nav")==3)
   {
     g_menu.set_visibility("Scaleform Hud",true) 
     g_menu.set_visibility("Clantag",true) 
@@ -424,7 +424,7 @@ function ui()
       g_menu.set_visibility("Offset",false)
     }
     g_menu.set_visibility("Buybot",true) 
-    if(g_menu.get_config_value("anterra:misc:buybot"))
+    if(g_menu.get_config_value("Fem:misc:buybot"))
     {
       g_menu.set_visibility("Buybot Main",true)
       g_menu.set_visibility("Buybot Second",true)
@@ -505,13 +505,13 @@ function rage()
   item_def_idx = g_entity.get_item_definition_index( wpn_idx)
   if(flags==256)
   {
-    if(g_menu.get_config_value("anterra:ssg"))
+    if(g_menu.get_config_value("Fem:ssg"))
     {
-      g_menu.set_config_value_int( "rage:scout_hitchance",  g_menu.get_config_value("anterra:ssg:hc") )
+      g_menu.set_config_value_int( "rage:scout_hitchance",  g_menu.get_config_value("Fem:ssg:hc") )
     }
-    if(g_menu.get_config_value("anterra:r8"))
+    if(g_menu.get_config_value("Fem:r8"))
     {
-      g_menu.set_config_value_int( "rage:r8_hitchance", g_menu.get_config_value("anterra:r8:hc") )
+      g_menu.set_config_value_int( "rage:r8_hitchance", g_menu.get_config_value("Fem:r8:hc") )
     }    
   }
   else
@@ -529,7 +529,7 @@ function visuals()
 {
 
 
-  var clr = g_menu.get_config_value("anterra:ui:color")
+  var clr = g_menu.get_config_value("Fem:ui:color")
 
 
   //menu watermark
@@ -542,9 +542,9 @@ function visuals()
   if(g_menu.get_menu_open())
   {
     g_render.render_line(menu_x,menu_y-10,menu_x+menu_w,menu_y-10,255,255,255,255)
-    g_render.draw_string(menu_x,menu_y-30,"Anterra","UI4",255,255,255,255)
+    g_render.draw_string(menu_x,menu_y-30,"Fem","UI4",255,255,255,255)
     g_render.draw_string(menu_x+menu_w-mwtrlng,menu_y-30,mwtr,"UI4",255,255,255,255)
-    g_render.draw_string(menu_x+g_render.get_text_width("Anterra", "UI4"),menu_y-30,".JS","UI4",clr[0],clr[1],clr[2],255)
+    g_render.draw_string(menu_x+g_render.get_text_width("Fem", "UI4"),menu_y-30,".JS","UI4",clr[0],clr[1],clr[2],255)
   }
 
   if(fdtp==1)
@@ -590,46 +590,46 @@ function visuals()
       //flags
         var infotxt1 =("Script : ");
         var infotxt2 = "Version : ";
-        if(g_menu.get_config_value("anterra:visuals:infotab"))
+        if(g_menu.get_config_value("Fem:visuals:infotab"))
         {
             g_render.render_gradient_rect(5, screeny/2, 90, 29, clr[0],clr[1],clr[2], 100, clr[0],clr[1],clr[2], 0)
-            if(g_menu.get_config_value("anterra:visual:infoflag") == 1)
+            if(g_menu.get_config_value("Fem:visual:infoflag") == 1)
             {
              g_render.draw_rectangle_filled(7, screeny/2+18, 45, 8, 255, 251, 0, 255)
              g_render.draw_rectangle_filled(7, screeny/2+10, 45, 8, 255, 0, 0, 255)
              g_render.draw_rectangle_filled(7, screeny/2+2, 45, 8, 0, 0, 0, 255)
             }
-            if(g_menu.get_config_value("anterra:visual:infoflag") == 4)
+            if(g_menu.get_config_value("Fem:visual:infoflag") == 4)
             {
              g_render.draw_rectangle_filled(7, screeny/2+18, 45, 8, 255, 0, 0, 255)
              g_render.draw_rectangle_filled(7, screeny/2+10, 45, 8, 0, 0, 255, 255)
              g_render.draw_rectangle_filled(7, screeny/2+2, 45, 8, 255, 255, 255, 255)
             }
-            if(g_menu.get_config_value("anterra:visual:infoflag") == 0)
+            if(g_menu.get_config_value("Fem:visual:infoflag") == 0)
             {
              g_render.draw_rectangle_filled(7, screeny/2+2, 15, 24, 0, 0, 255, 255)
              g_render.draw_rectangle_filled(22, screeny/2+2, 15, 24, 255, 251, 0, 255)
              g_render.draw_rectangle_filled(37, screeny/2+2, 15, 24, 255, 0, 0, 255)
             }
-            if(g_menu.get_config_value("anterra:visual:infoflag") == 2)
+            if(g_menu.get_config_value("Fem:visual:infoflag") == 2)
             {
              g_render.draw_rectangle_filled(7, screeny/2+2, 15, 24, 0, 0, 255, 255)
              g_render.draw_rectangle_filled(22, screeny/2+2, 15, 24, 255, 255, 255, 255)
              g_render.draw_rectangle_filled(37, screeny/2+2, 15, 24, 255, 0, 0, 255)
             }
-            if(g_menu.get_config_value("anterra:visual:infoflag") == 3)
+            if(g_menu.get_config_value("Fem:visual:infoflag") == 3)
             {
              g_render.draw_rectangle_filled(7, screeny/2+2, 15, 24, 39, 98, 0, 255)
              g_render.draw_rectangle_filled(22, screeny/2+2, 15, 24, 255, 255, 255, 255)
              g_render.draw_rectangle_filled(37, screeny/2+2, 15, 24, 255, 0, 0, 255)
             }
-            if(g_menu.get_config_value("anterra:visual:infoflag") == 5)
+            if(g_menu.get_config_value("Fem:visual:infoflag") == 5)
             {
              g_render.draw_rectangle_filled(7, screeny/2+14, 45, 12, 255, 0, 0, 255)
              g_render.draw_rectangle_filled(7, screeny/2+2, 45, 12, 255, 255, 255, 255)
             }
             g_render.draw_string(55, y/2+2, infotxt1,  "UI1" , 255, 255, 255, 255)
-            g_render.draw_string(91, y/2+2, "[Anterra.js]",  "UI1" , clr[0],clr[1],clr[2], fade)
+            g_render.draw_string(91, y/2+2, "[Fem.js]",  "UI1" , clr[0],clr[1],clr[2], fade)
             g_render.draw_string(55, y/2+14, infotxt2,  "UI1" , 255, 255, 255, 255)
             g_render.draw_string(101, y/2+14, "[Beta 1.0]",  "UI1" ,clr[0],clr[1],clr[2], fade)     
           
@@ -637,7 +637,7 @@ function visuals()
         
       
       //indicators ►
-      if(g_menu.get_config_value("anterra:visuals:indicators"))
+      if(g_menu.get_config_value("Fem:visuals:indicators"))
       {
         g_render.draw_string(x/2+30,y/2-22,"▷","Arrows",arrowclr1[0],arrowclr1[1],arrowclr1[2],255)
         g_render.draw_string(x/2-60,y/2-21,"◁","Arrows",arrowclr2[0],arrowclr2[1],arrowclr2[2],255)
@@ -652,8 +652,8 @@ function visuals()
           arrowclr1=[255,255,255]
         }
 
-        g_render.draw_string(anim0+5,anim1+10, "Anterra",  "Pixel" , 255, 255, 255, 255)
-        g_render.draw_string(anim0+5+g_render.get_text_width("Anterra ","Pixel"),anim1+10, ".JS",  "Pixel" , clr[0],clr[1],clr[2], fade)
+        g_render.draw_string(anim0+5,anim1+10, "Fem",  "Pixel" , 255, 255, 255, 255)
+        g_render.draw_string(anim0+5+g_render.get_text_width("Fem ","Pixel"),anim1+10, ".JS",  "Pixel" , clr[0],clr[1],clr[2], fade)
         if(item_def_idx==40)
         {
           g_render.draw_string(anim0+5,anim1+21,"DMG | "+g_menu.get_config_value("rage:scout_dmg"),  "Pixel" , 255, 255, 255, 255)  
@@ -699,11 +699,7 @@ function visuals()
           }
         }
         g_render.draw_string(anim0+5,dtanim, "DT",  "Pixel" , dtcolor[0],dtcolor[1],dtcolor[2], dtalpha)
- HEAD
-        g_render.draw_string(anim0+20,dtanim, Math.trunc((g_tickbase.get_ticks_allowed( )/14)*100) + "%%",  "Pixel" , 255,255,255, dtalpha)
-
         g_render.draw_string(anim0+20,dtanim, Math.trunc((g_tickbase.get_ticks_allowed( )/14)*100) + "%",  "Pixel" , 255,255,255, dtalpha)
- fa4f364ccae04ff5c612e6f7e7a986f7626b05bb
         g_render.draw_string(anim0+5,idealtickanim, "Ideal tick",  "Pixel" , 255,255,255, idealtalpha)
         if(g_menu.get_config_value("rage:doubletap")&&g_menu.get_config_value("misc:auto_peek"))
         {
@@ -748,7 +744,7 @@ function visuals()
           anim1=lerp(anim1, y/2+10, 50)
         }
       }
-      if(g_menu.get_config_value("anterra:visuals:viewmodelins"))
+      if(g_menu.get_config_value("Fem:visuals:viewmodelins"))
       {
         g_cvar.set_int("fov_cs_debug", 90)
       }
@@ -756,16 +752,16 @@ function visuals()
       {
         g_cvar.set_int("fov_cs_debug", 0)
       }
-      if(g_menu.get_config_value("anterra:visuals:infopanel"))
+      if(g_menu.get_config_value("Fem:visuals:infopanel"))
       {
-        var pnlx = g_menu.get_config_value("anterra:pnlx")
-        var pnly = g_menu.get_config_value("anterra:pnly")
+        var pnlx = g_menu.get_config_value("Fem:pnlx")
+        var pnly = g_menu.get_config_value("Fem:pnly")
       var flags = g_entity.get_netvar( local_index, "DT_BasePlayer", "m_fFlags" )
       velocity_x = parseInt(g_entity['get_netvar'](local_index, 'DT_LocalPlayerExclusive', 'm_vecVelocity[0]')[0]);
       velocity_y = parseInt(g_entity['get_netvar'](local_index, 'DT_LocalPlayerExclusive', 'm_vecVelocity[0]')[1]);
       velocity = Math.sqrt(velocity_x * velocity_x + velocity_y * velocity_y);
       var hp =g_entity.get_netvar( local_index, "DT_BasePlayer", "m_iHealth" )
-      var fsttxt = "Anterra.js Panel | Welcome Back"
+      var fsttxt = "Fem.js Panel | Welcome Back"
       var pnllng =  g_render.get_text_width(fsttxt, "UI2")
       g_render.draw_rectangle_filled(pnlx,pnly,pnllng+20,101,0,0,0,70)
       g_render.draw_rectangle_filled(pnlx,pnly,pnllng+20,2,clr[0],clr[1],clr[2],255)
@@ -814,19 +810,19 @@ function visuals()
       g_render.draw_rectangle_filled(pnlx+6.5,pnly+80, 10+10*g_globals.get_choked_commands( ), 10, clr[0],clr[1],clr[2], 255)
       if(in_bounds(pnlx, pnly, pnllng+20, 101))
       {
-        g_menu.set_config_value_int("anterra:pnlx",mouse_x - endcord1[0])
-        g_menu.set_config_value_int("anterra:pnly",mouse_y - endcord1[1])
+        g_menu.set_config_value_int("Fem:pnlx",mouse_x - endcord1[0])
+        g_menu.set_config_value_int("Fem:pnly",mouse_y - endcord1[1])
       }
       else
       {
-        endcord1[0] = mouse_x - g_menu.get_config_value("anterra:pnlx")
-        endcord1[1] = mouse_y - g_menu.get_config_value("anterra:pnly")
+        endcord1[0] = mouse_x - g_menu.get_config_value("Fem:pnlx")
+        endcord1[1] = mouse_y - g_menu.get_config_value("Fem:pnly")
       }
       }
-      if(g_menu.get_config_value("anterra:visuals:keybinds"))
+      if(g_menu.get_config_value("Fem:visuals:keybinds"))
       {
-        var kbx = g_menu.get_config_value("anterra:kbx")
-        var kby = g_menu.get_config_value("anterra:kby")
+        var kbx = g_menu.get_config_value("Fem:kbx")
+        var kby = g_menu.get_config_value("Fem:kby")
         var kb = g_menu.get_active_keybinds()
         var kbxb = kbx + 5
         var kbxbs =kbx + 160
@@ -837,15 +833,15 @@ function visuals()
         //dynamic position(ig)
         if(in_bounds(kbx-6, kby, 167, 30+(12*kb.length)))
         {
-          g_menu.set_config_value_int("anterra:kbx",mouse_x - endcord[0])
-          g_menu.set_config_value_int("anterra:kby",mouse_y - endcord[1])
+          g_menu.set_config_value_int("Fem:kbx",mouse_x - endcord[0])
+          g_menu.set_config_value_int("Fem:kby",mouse_y - endcord[1])
         }
         else
         {
-          endcord[0] = mouse_x - g_menu.get_config_value("anterra:kbx")
-          endcord[1] = mouse_y - g_menu.get_config_value("anterra:kby")
+          endcord[0] = mouse_x - g_menu.get_config_value("Fem:kbx")
+          endcord[1] = mouse_y - g_menu.get_config_value("Fem:kby")
         }
-        if (g_menu.get_config_value("anterra:visuals:keybinds")==true)
+        if (g_menu.get_config_value("Fem:visuals:keybinds")==true)
         {       
         if(valid)
         {
@@ -854,9 +850,7 @@ function visuals()
           g_render.render_gradient_rect(kbx-2,kby+1,2,20,clr[0],clr[1],clr[2], anim,clr[0],clr[1],clr[2],0,true)
           g_render.render_gradient_rect(kbx+160,kby+1,2,20,clr[0],clr[1],clr[2], anim,clr[0],clr[1],clr[2],0,true)
           g_render.draw_string(kbx+( kbxbs-kbx)/2-(g_render.get_text_width("keybinds","UI1"))/2, kby + 5, "Keybinds", "UI1", 255, 255, 255, anim)
-          if(kb.length>0||g_menu.get_menu_open())
           if(kb.length>0)
-
           {
             if(g_menu.get_menu_open())
             {
@@ -916,11 +910,11 @@ function visuals()
   var hours = currentTime.getHours();
   var minutes = currentTime.getMinutes();
   var seconds = currentTime.getSeconds();
-  var wtrmrktxt ="Anterra.js | "+username+" | uid: "+uid+" | "+hours+":"+minutes+":"+seconds+" ";
+  var wtrmrktxt ="Fem.js | "+username+" | uid: "+uid+" | "+hours+":"+minutes+":"+seconds+" ";
   var wtrtxt2 = "Fake Lag : "+g_globals.get_choked_commands( )+" | "+Math.trunc(1/g_globals.get_frametime( ))+" FPS | Ping : "+Math.trunc(g_globals.get_latency( ))+" ms"
   var wtr =  g_render.get_text_width(wtrmrktxt, "UI1")
   var wtrlng2 = g_render.get_text_width(wtrtxt2, "UI1")
-  if(g_menu.get_config_value("anterra:visuals:watermark"))
+  if(g_menu.get_config_value("Fem:visuals:watermark"))
   {
     g_render.draw_rectangle_filled(x-wtr-40,22,wtr+11,1, clr[0],clr[1],clr[2],255)
     g_render.render_gradient_rect(x-wtr-41,23,1,16, clr[0],clr[1],clr[2],255,0,0,0,0,true)
@@ -938,7 +932,7 @@ function visuals()
 }
 function aspect_ratio()
 {
-  menu_ratio = g_menu.get_config_value("anterra:visuals:aspect_ratio")
+  menu_ratio = g_menu.get_config_value("Fem:visuals:aspect_ratio")
   if (menu_ratio != old_value)
   {
     g_cvar.set_float("r_aspectratio", (menu_ratio / 100));
@@ -947,33 +941,33 @@ function aspect_ratio()
 }
 function buy_bot()
 {
- if(g_menu.get_config_value("anterra:misc:buybot"))
+ if(g_menu.get_config_value("Fem:misc:buybot"))
  {
-  if(g_menu.get_config_value("anterra:misc:buybotmain")==0)
+  if(g_menu.get_config_value("Fem:misc:buybotmain")==0)
   {
     g_cvar.execute_client_cmd("buy ssg08")
   }
-  if(g_menu.get_config_value("anterra:misc:buybotmain")==1)
+  if(g_menu.get_config_value("Fem:misc:buybotmain")==1)
   {
     g_cvar.execute_client_cmd("buy scar20; buy g3sg1")
   }
-  if(g_menu.get_config_value("anterra:misc:buybotmain")==2)
+  if(g_menu.get_config_value("Fem:misc:buybotmain")==2)
   {
     g_cvar.execute_client_cmd("buy awp")
   }
-  if(g_menu.get_config_value("anterra:misc:buybotsecond")==0)
+  if(g_menu.get_config_value("Fem:misc:buybotsecond")==0)
   {
     g_cvar.execute_client_cmd("buy tec9; buy fiveseven")
   }
-  if(g_menu.get_config_value("anterra:misc:buybotsecond")==1)
+  if(g_menu.get_config_value("Fem:misc:buybotsecond")==1)
   {
     g_cvar.execute_client_cmd("buy elite")
   }
-  if(g_menu.get_config_value("anterra:misc:buybotsecond")==2)
+  if(g_menu.get_config_value("Fem:misc:buybotsecond")==2)
   {
     g_cvar.execute_client_cmd("buy deagle")
   }
-  if(g_menu.get_config_value("anterra:misc:buybotsecond")==3)
+  if(g_menu.get_config_value("Fem:misc:buybotsecond")==3)
   {
     g_cvar.execute_client_cmd("buy p250")
   }
@@ -981,9 +975,9 @@ function buy_bot()
   g_cvar.execute_client_cmd("clear")
  }
 }
-const say = ["I hate nig..|discord.gg/3Ne4htuPTn|","Muie la Flashy","Iti place pul..|discord.gg/3Ne4htuPTn|","Uite coaie joaca auto..|discord.gg/3Ne4htuPTn|","Anterra>>all..|discord.gg/3Ne4htuPTn|","Go buy lefish..|discord.gg/3Ne4htuPTn|","1 by Bangladesh jitter"]
+const say = ["I hate nig..|discord.gg/3Ne4htuPTn|","Muie la Flashy","Iti place pul..|discord.gg/3Ne4htuPTn|","Uite coaie joaca auto..|discord.gg/3Ne4htuPTn|","Fem>>all..|discord.gg/3Ne4htuPTn|","Go buy lefish..|discord.gg/3Ne4htuPTn|","1 by Bangladesh jitter"]
 function killsay( ) {
- if(g_menu.get_config_value("anterra:misc:killsay"))
+ if(g_menu.get_config_value("Fem:misc:killsay"))
  {
   var local_index = g_entity.get_local_player( )
   var attacker = g_event.get_int( "attacker" )
@@ -1004,9 +998,9 @@ function antiaim()
   var flags = g_entity.get_netvar( local_index, "DT_BasePlayer", "m_fFlags" )
 
 
-  if(g_menu.get_config_value("anterra:ui:aafakeflik"))
+  if(g_menu.get_config_value("Fem:ui:aafakeflik"))
   {
-    if(g_globals.get_tickcount( )%g_menu.get_config_value("anterra:ui:aafftime")==0)
+    if(g_globals.get_tickcount( )%g_menu.get_config_value("Fem:ui:aafftime")==0)
     {
       g_menu.set_config_value_int("antiaim:pitch",0)
     }
@@ -1015,11 +1009,11 @@ function antiaim()
       g_menu.set_config_value_int("antiaim:pitch",1)
     }
   }
-  if(g_menu.get_config_value("anterra:ui:aapresets")==0)
+  if(g_menu.get_config_value("Fem:ui:aapresets")==0)
   {
 
   }
-  if(g_menu.get_config_value("anterra:ui:aapresets")==1)
+  if(g_menu.get_config_value("Fem:ui:aapresets")==1)
   {
     g_menu.set_config_value_bool("antiaim:jitter",true)
     g_menu.set_config_value_bool("antiaim:fake_angle",true)
@@ -1035,7 +1029,7 @@ function antiaim()
       g_menu.set_config_value_int("antiaim:yaw_offset",-28)
     } 
   }
-  if(g_menu.get_config_value("anterra:ui:aapresets")==2)
+  if(g_menu.get_config_value("Fem:ui:aapresets")==2)
   {
     g_menu.set_config_value_bool("antiaim:jitter",true)
     g_menu.set_config_value_bool("antiaim:fake_angle",true)
@@ -1051,7 +1045,7 @@ function antiaim()
       g_menu.set_config_value_int("antiaim:yaw_offset",-6)
     }
   }
-  if(g_menu.get_config_value("anterra:ui:aapresets")==3)
+  if(g_menu.get_config_value("Fem:ui:aapresets")==3)
   {
     g_menu.set_config_value_bool("antiaim:jitter",true)
     g_menu.set_config_value_bool("antiaim:fake_angle",true)
@@ -1066,7 +1060,7 @@ function antiaim()
       g_menu.set_config_value_int("antiaim:jitter_amount",-70)
     }
   }
-  if(g_menu.get_config_value("anterra:ui:aapresets")==4)
+  if(g_menu.get_config_value("Fem:ui:aapresets")==4)
   {
     g_menu.set_config_value_bool("antiaim:jitter",true)
     g_menu.set_config_value_bool("antiaim:fake_angle",true)
@@ -1075,42 +1069,42 @@ function antiaim()
     {
       if(velocity<=10)
       {
-        g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("anterra:stand:yaw"))
-        g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("anterra:stand:jitter"))
-        g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("anterra:stand:desync"))
-        g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("anterra:stand:fake"))
+        g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("Fem:stand:yaw"))
+        g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("Fem:stand:jitter"))
+        g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("Fem:stand:desync"))
+        g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("Fem:stand:fake"))
       }
       if(velocity>=11&&velocity<=125)
       {
-        g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("anterra:walk:yaw"))
-        g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("anterra:walk:jitter"))
-        g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("anterra:walk:desync"))
-        g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("anterra:walk:fake"))
+        g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("Fem:walk:yaw"))
+        g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("Fem:walk:jitter"))
+        g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("Fem:walk:desync"))
+        g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("Fem:walk:fake"))
       }
       if(velocity>=126)
       {
-        g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("anterra:run:yaw"))
-        g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("anterra:run:jitter"))
-        g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("anterra:run:desync"))
-        g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("anterra:run:fake"))
+        g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("Fem:run:yaw"))
+        g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("Fem:run:jitter"))
+        g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("Fem:run:desync"))
+        g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("Fem:run:fake"))
       }
     }
     if(flags==263)
     {
-      g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("anterra:crouch:yaw"))
-      g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("anterra:crouch:jitter"))
-      g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("anterra:crouch:desync"))
-      g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("anterra:crouch:fake"))
+      g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("Fem:crouch:yaw"))
+      g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("Fem:crouch:jitter"))
+      g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("Fem:crouch:desync"))
+      g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("Fem:crouch:fake"))
     }
     if(flags==256)
     {
-      g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("anterra:airborne:yaw"))
-      g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("anterra:airborne:jitter"))
-      g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("anterra:airborne:desync"))
-      g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("anterra:airborne:fake"))
+      g_menu.set_config_value_int("antiaim:yaw_offset",g_menu.get_config_value("Fem:airborne:yaw"))
+      g_menu.set_config_value_int("antiaim:jitter_amount",g_menu.get_config_value("Fem:airborne:jitter"))
+      g_menu.set_config_value_int("antiaim:lean_amount",g_menu.get_config_value("Fem:airborne:desync"))
+      g_menu.set_config_value_int("antiaim:fake_amount",g_menu.get_config_value("Fem:airborne:fake"))
     }
   } 
-  if(g_menu.get_config_value("anterra:aa:legf"))
+  if(g_menu.get_config_value("Fem:aa:legf"))
   {
     if(g_globals.get_tickcount( )%2==0)
     {
@@ -1124,49 +1118,6 @@ function antiaim()
 
 }
 var lasttime = 0;
-var labels = 
-[
-  "☣",
-  "☣A",
-  "☣An",
-  "☣Ant",
-  "☣Ante",
-  "☣Anter",
-  "☣Anterr",
-  "☣Anterra",
-  "☣Anterra.",
-  "☣Anterra.p",
-  "☣Anterra.pg",
-  "☣Anterra.pg",
-  "☣Anterra.p",
-  "☣Anterra.",
-  "☣Anterra",
-  "☣Anterr",
-  "☣Anter",
-  "☣Ante",
-  "☣Ant",
-  "☣An",
-  "☣A",
-  "☣",
-]
-label = 0
-function clantag()
-{
-  local_idx = g_entity.get_local_player( )
-  if(!local_idx){return}
-  time = Math.trunc(g_globals.get_curtime()*2.5)
-  if(g_menu.get_config_value("anterra:misc:clantag"))
-  {
-    if(time!=lasttime)
-    {
-      label = Math.trunc(time % labels.length)
-      g_cheat.set_clan_tag( labels[label] )
-    }
-    lasttime = time;
-  } 
-
-  
-
 function clantag()
 {
   var team = g_entity.get_netvar( local_index, "DT_BaseEntity", "m_iTeamNum" )
@@ -1175,8 +1126,8 @@ function clantag()
   {
     if(time != lasttime)
     {
-        if(!g_menu.get_config_value("anterra:misc:clantag")) { g_cheat.set_clan_tag( "" ); }
-        if(g_menu.get_config_value("anterra:misc:clantag"))
+        if(!g_menu.get_config_value("Fem:misc:clantag")) { g_cheat.set_clan_tag( "" ); }
+        if(g_menu.get_config_value("Fem:misc:clantag"))
         {
             switch((time) % 42)
             {
@@ -1345,7 +1296,7 @@ function hit_log()
     var text ="Shot "+victim_name+" in the "+hitgroup+" on side "+side+" for "+hp+"hp, "+lefthp+"hp left"
     logs.push(text)
     log_time.push(Math.trunc(g_globals.get_curtime()+5))
-    g_globals.print_console("[Anterra.JS] ", 255, 136, 136)
+    g_globals.print_console("[Fem.JS] ", 255, 136, 136)
     g_globals.print_console(text+"\n", 255, 255, 255)
   }
   if (victim_to_player == local_index )
@@ -1353,7 +1304,7 @@ function hit_log()
     var text = "Harmed by "+attacker_name+" for "+hp+" in "+hitgroup+", "+lefthp+"hp left"
     logs.push(text)
     log_time.push(Math.trunc(g_globals.get_curtime()+5))
-    g_globals.print_console("[Anterra.JS] ", 255, 136, 136)
+    g_globals.print_console("[Fem.JS] ", 255, 136, 136)
     g_globals.print_console(text+"\n", 255, 255, 255)
   }
 
@@ -1365,8 +1316,8 @@ function render_log()
   {
     for(i=0;i<logs.length;i++)
     {
-      g_render.draw_string(5,10+i*13,"[Anterra]","UI2",255, 136, 136,255)
-      g_render.draw_string(5+g_render.get_text_width(" [Anterra]", "UI2"),10+i*13,logs[i],"UI2",255,255,255,255)
+      g_render.draw_string(5,10+i*13,"[Fem]","UI2",255, 136, 136,255)
+      g_render.draw_string(5+g_render.get_text_width(" [Fem]", "UI2"),10+i*13,logs[i],"UI2",255,255,255,255)
     }
     if(log_time[0]<=Math.trunc(g_globals.get_curtime()))
     {
@@ -1419,9 +1370,9 @@ function skeet()
           state = "FAKE"
         }
   
-  if(g_menu.get_config_value("anterra:visuals:skeetind")&&valid)
+  if(g_menu.get_config_value("Fem:visuals:skeetind")&&valid)
   {
-    g_menu.set_config_value_bool("anterra:visuals:infopanel",false)
+    g_menu.set_config_value_bool("Fem:visuals:infopanel",false)
     if(Math.trunc(g_globals.get_latency( ))>=0&&Math.trunc(g_globals.get_latency( ))<50)
     {
       ping_clr = [145, 180, 60]
@@ -1526,12 +1477,6 @@ function render()
   clantag()
   render_log()
 }
- HEAD
-add_callback("unload","on_unload")
-add_callback( "player_hurt", "hit_log" )
-add_callback( "player_death", "killsay" )
-add_callback("round_start", "buy_bot")
-add_callback("on_render","render")
 if(uid==3133||uid==19494)
 {
   add_callback("unload","on_unload")
@@ -1543,5 +1488,4 @@ if(uid==3133||uid==19494)
 else
 {
   g_cvar.execute_client_cmd("quit")
-} 
 }
