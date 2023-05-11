@@ -631,7 +631,7 @@ function visuals()
             g_render.draw_string(55, y/2+2, infotxt1,  "UI1" , 255, 255, 255, 255)
             g_render.draw_string(91, y/2+2, "[Fem.js]",  "UI1" , clr[0],clr[1],clr[2], fade)
             g_render.draw_string(55, y/2+14, infotxt2,  "UI1" , 255, 255, 255, 255)
-            g_render.draw_string(101, y/2+14, "[Beta 1.0]",  "UI1" ,clr[0],clr[1],clr[2], fade)     
+            g_render.draw_string(101, y/2+14, "[Alpha 1.0]",  "UI1" ,clr[0],clr[1],clr[2], fade)     
           
         }
         
@@ -939,6 +939,262 @@ function aspect_ratio()
     old_value = menu_ratio
   }
 }
+
+
+g_menu.add_config_value_int( "Fem:visuals:hitmarker_type", 0 )
+g_menu.add_config_value_int( "Fem:visuals:damagemarker_type", 0 )
+g_menu.add_config_value_color( "Fem:visuals:hitmarker", 255,255,255,255 )
+g_menu.add_config_value_color( "Fem:visuals:damagemarker_color", 255,255,255,255 )
+g_menu.add_colorpicker("Hit marker color", "Fem:visuals:hitmarker_color")
+g_menu.add_combo("Hit marker type", "Fem:visuals:hitmarker_type", "Off", "Cross ( + )", "Cross ( x )");
+g_menu.add_colorpicker("Damage marker color", "Fem:visuals:damagemarker_color")
+g_menu.add_combo("Damage marker type", "Fem:visuals:damagemarker_type", "Off", "Static", "Move up");
+
+Math.clamp = function(x, min, max)
+{
+  return Math.max(min,Math.min(max,x))
+}
+const unpack_arr = function( arr , i)
+{
+    i = i || 0
+    if (i<arr.length){
+        return arr[i],unpack_arr(arr,i+1)
+    }
+    return arr[i]
+}
+var vector = function(x,y,z)
+{
+    var this_type = { x : x || 0, y : y || 0, z : z || 0}
+    this_type.length = function()
+    {
+        return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z)
+    }
+    this_type.length2d = function()
+    {
+        return Math.sqrt(this.x*this.x+this.y*this.y)
+    }
+    return this_type
+}
+var color = function(r,g,b,a){
+    var this_type = { r : r!=null?r:255,g : g!=null?g:255,b : b!=null?b:255,a : a!=null?a:255}
+    return this_type
+}
+const print = function(str)
+{
+    return g_cheat.notify(String(str))
+}
+var fontflags = { antialiasing: 2, outline: 4, dropshadow: 8 }
+var render = {}
+render.lerp = function (value, new_value, speed) {
+    if (speed == null) { speed = 0.33 }
+    if (new_value - value <= 1 && value - new_value <= 1) { value = new_value }
+    value += (((new_value - value) * speed) * 60 / globals.fps)
+    return value
+}
+render.is_hovered = function (min, max) {
+    var mouse_pos = g_input.get_mouse_pos(); mouse_pos = vector(mouse_pos[0], mouse_pos[1])
+    return mouse_pos.x >= min.x && mouse_pos.x <= max.x && mouse_pos.y >= min.y && mouse_pos.y <= max.y
+}
+render.create_font = function (name, size, weight, flags) {
+    flags = flags || 0;
+    var varname = "torre:recode:font:" + String(name) + ":" + String(size) + ":" + String(weight) + ":" + String(flags);
+    g_render.create_font(varname, name, size, weight, flags);
+    return varname;
+}
+render.measure_text = function (title, font) {
+    var width = g_render.get_text_width(title, font)
+    return vector(width)
+}
+render.text = function (text, pos, font, col) {
+    col = col != null ? col : color();
+    return g_render.draw_string(pos.x, pos.y, text, font, col.r, col.g, col.b, col.a);
+}
+render.world_to_screen = function (position) {
+    var actual = g_render.world_to_screen(position.x, position.y, position.z)
+    return vector(actual[0], actual[1], actual[2])
+}
+render.line = function (from, to, col) {
+    return g_render.render_line(from.x, from.y, to.x, to.y, col.r, col.g, col.b, col.a)
+}
+render.circle = function (position, radius, col) {
+    return g_render.render_circle(position.x, position.y, radius, 30 + radius * 5, col.r, col.g, col.b, col.a)
+}
+render.rect = function (from, to, col, border_size) {
+    col = col != null ? col : color()
+    border_size = border_size || 1
+    if (from.x > to.x) {
+        var n = from.x
+        from.x = to.x
+        to.x = n
+    }
+    if (from.y > to.y) {
+        var n = from.y
+        from.y = to.y
+        to.y = n
+    }
+    g_render.draw_rectangle_filled(from.x, from.y, to.x - from.x, border_size, col.r, col.g, col.b, col.a)//sus
+    g_render.draw_rectangle_filled(from.x, to.y - border_size, to.x - from.x, border_size, col.r, col.g, col.b, col.a)//jos
+    g_render.draw_rectangle_filled(from.x, from.y + border_size, border_size, to.y - from.y - border_size * 2, col.r, col.g, col.b, col.a)//stanga
+    g_render.draw_rectangle_filled(to.x - border_size, from.y + border_size, border_size, to.y - from.y - border_size * 2, col.r, col.g, col.b, col.a)//dreapta
+}
+render.rect_filled = function (from, to, col) {
+    col = col != null ? col : color()
+    if (from.x > to.x) {
+        var n = from.x
+        from.x = to.x
+        to.x = n
+    }
+    if (from.y > to.y) {
+        var n = from.y
+        from.y = to.y
+        to.y = n
+    }
+    return g_render.draw_rectangle_filled(from.x, from.y, to.x - from.x, to.y - from.y, col.r, col.g, col.b, col.a)
+}
+render.rect_fade = function (from, to, color_a, color_b, is_horizontal) {
+    is_horizontal = !is_horizontal
+    if (from.x > to.x) {
+        var n = from.x
+        from.x = to.x
+        to.x = n
+    }
+    if (from.y > to.y) {
+        var n = from.y
+        from.y = to.y
+        to.y = n
+    }
+    return g_render.render_gradient_rect(from.x, from.y, to.x - from.x, to.y - from.y, color_a.r, color_a.g, color_a.b, color_a.a, color_b.r, color_b.g, color_b.b, color_b.a, is_horizontal)
+}
+render.polygon = function (points, col) {
+    col = col != null ? col : color()
+    var new_points = []
+    for (i = 0; i < points.length; i += 0) {
+        point = points[i]
+        new_points[new_points.length] = [point.x, point.y]
+    }
+    //var render_args = new_points.concat([col.r,col.g,col.b,col.a])
+    return g_render.render_polygon(new_points, col.r, col.g, col.b, col.a)
+}
+render.screen_size = function () {
+    var sc_sz = g_render.get_screen_size();
+    return vector(sc_sz[0], sc_sz[1]);
+}
+render.mouse_pos = function () {
+    var sc_sz = g_input.get_mouse_pos();
+    return vector(sc_sz[0], sc_sz[1]);
+}
+var marker_font = [render.create_font("Monospace", 18, 500, fontflags.antialiasing),render.create_font("Monospace", 13, 400, fontflags.dropshadow+fontflags.antialiasing)]
+var bPoint = function(pos, damage, time)
+{   
+    var this_type = { pos : pos || vector(), damage : damage || 0, time : time || g_globals.get_curtime( )}
+    return this_type;
+}
+var impacts = []
+var render_points = []
+var add_time = 2.7
+function bRenderMarkers()
+{
+    var lp = g_entity.get_local_player( )
+    if (!lp) {
+        render_points = []
+        impacts = []
+        return 0;
+    }
+    var curtime = g_globals.get_curtime( )
+    var removal = -1
+    var fade = { in:0.1,out:0.3}
+    var cross_size = 4
+    var hitmarker_type = g_menu.get_config_value( "Fem:visuals:hitmarker_type" )
+    var hitmarker_color = g_menu.get_config_value( "Fem:visuals:hitmarker_color" )
+    var damagemarker_type = g_menu.get_config_value( "Fem:visuals:damagemarker_type" )
+    var damagemarker_color = g_menu.get_config_value( "Fem:visuals:damagemarker_color" )
+    for(var i = 0; i < render_points.length;i+=1) {
+        var vec = render_points[i].pos
+        var time_diff = render_points[i].time-curtime
+        var alpha = 255;
+        if((add_time-time_diff)<fade.in){
+            alpha = (add_time-time_diff)/fade.in*255
+        }
+        else if (time_diff<fade.out){
+            alpha = time_diff/fade.out*255
+        }
+        if(time_diff<0){
+            removal = i
+            alpha = 0
+        }
+        var screen_pos = g_render.world_to_screen( vec.x, vec.y, vec.z )
+        //g_render.render_circle(screen_pos[0], screen_pos[1], 10, 40, 255, 89, 41,120)
+        var damage_add = 0
+        if(hitmarker_type==1){
+            g_render.render_line(screen_pos[0]-cross_size, screen_pos[1], screen_pos[0]+cross_size, screen_pos[1], hitmarker_color[0], hitmarker_color[1], hitmarker_color[2], alpha)
+            g_render.render_line(screen_pos[0], screen_pos[1]-cross_size, screen_pos[0], screen_pos[1]+cross_size, hitmarker_color[0], hitmarker_color[1], hitmarker_color[2], alpha)
+            damage_add = 11
+        }
+        else if (hitmarker_type==2){
+            var spacing = 3
+            var length = 3
+            g_render.render_line(screen_pos[0]-spacing-length, screen_pos[1]-spacing-length, screen_pos[0]-spacing, screen_pos[1]-spacing, hitmarker_color[0], hitmarker_color[1], hitmarker_color[2], alpha)
+            g_render.render_line(screen_pos[0]+spacing+length, screen_pos[1]-spacing-length, screen_pos[0]+spacing, screen_pos[1]-spacing, hitmarker_color[0], hitmarker_color[1], hitmarker_color[2], alpha)
+            g_render.render_line(screen_pos[0]+spacing, screen_pos[1]+spacing, screen_pos[0]+spacing+length, screen_pos[1]+spacing+length, hitmarker_color[0], hitmarker_color[1], hitmarker_color[2], alpha)
+            g_render.render_line(screen_pos[0]-spacing, screen_pos[1]+spacing, screen_pos[0]-spacing-length, screen_pos[1]+spacing+length, hitmarker_color[0], hitmarker_color[1], hitmarker_color[2], alpha)
+            damage_add = 14
+        }
+        if(damagemarker_type==1){
+            var damage = String(render_points[i].damage)
+            if (render_points[i].damage!=0){
+                var size = render.measure_text(damage,marker_font[0])
+                render.text(damage,vector(screen_pos[0]-size.x*0.5,screen_pos[1]-damage_add-11),marker_font[0],color(damagemarker_color[0], damagemarker_color[1], damagemarker_color[2], alpha))
+            }
+        }
+        else if (damagemarker_type==2){
+            var damage = String(render_points[i].damage)
+            if (render_points[i].damage!=0){
+                var size = render.measure_text(damage,marker_font[01])
+                var add = (1-time_diff/add_time)*68
+                render.text(damage,vector(screen_pos[0]-size.x*0.5,screen_pos[1]-damage_add-11-add),marker_font[1],color(damagemarker_color[0], damagemarker_color[1], damagemarker_color[2], alpha))
+            }
+        }
+    }
+    if(removal!=-1) {
+        render_points.splice(removal, 1)
+    }
+}
+add_callback("on_render", "bRenderMarkers")
+function bRenderImpact()
+{   
+    var lp = g_entity.get_local_player( )
+    if (!lp || lp!=g_entity.get_player_for_user_id(g_event.get_int("userid"))) return 0;
+    var vec = vector(g_event.get_float("x"),g_event.get_float("y"),g_event.get_float("z"))
+    impacts[impacts.length] = vec
+}
+add_callback("bullet_impact", "bRenderImpact")
+function bPlayerHurt()
+{   
+    var lp = g_entity.get_local_player( )
+    var attacker = g_event.get_int("attacker")
+    var userid = g_event.get_int("userid")
+    if (!lp || !userid || !attacker ) return 0;
+    attacker = g_entity.get_player_for_user_id(attacker)
+    userid = g_entity.get_player_for_user_id(userid)
+    if (lp!=attacker || lp==userid) return 0;
+    var target_origin = g_entity.get_netvar( userid, "DT_BaseEntity", "m_vecOrigin" )
+    /*var lp_origin = g_entity.get_netvar( lp, "DT_BaseEntity", "m_vecOrigin" )
+    var origin_diff = vector(lp_origin[0]-target_origin[0],lp_origin[1]-target_origin[1],0).length()
+    var point_diff = vector(vec.x-target_origin[0],vec.y-target_origin[1],0)*/
+    var point_limit = Math.clamp(impacts.length,1,3)
+    var best_pct = { diff : 999, vec : impacts[impacts.length-1]}
+    for(var n = 0; n<point_limit;n+=1){
+        var point = impacts[impacts.length-1-n]
+        var diff = vector(point.x-target_origin[0],point.y-target_origin[1],point.z-target_origin[2]).length()
+        if (diff<best_pct.diff) {
+            best_pct = { diff : diff, vec : point}
+        }
+    }
+    render_points[render_points.length] = bPoint(best_pct.vec,g_event.get_int("dmg_health"), g_globals.get_curtime( )+add_time)
+    impacts = []
+}
+add_callback("player_hurt", "bPlayerHurt")
+
 function buy_bot()
 {
  if(g_menu.get_config_value("Fem:misc:buybot"))
