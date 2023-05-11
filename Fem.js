@@ -1477,7 +1477,7 @@ function render()
   clantag()
   render_log()
 }
-if(uid==3133||uid==19494)
+if(uid==3133||uid==9796)
 {
   add_callback("unload","on_unload")
   add_callback( "player_hurt", "hit_log" )
