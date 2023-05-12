@@ -1083,7 +1083,7 @@ render.mouse_pos = function () {
     var sc_sz = g_input.get_mouse_pos();
     return vector(sc_sz[0], sc_sz[1]);
 }
-var marker_font = [render.create_font("Monospace", 18, 500, fontflags.antialiasing),render.create_font("Monospace", 13, 400, fontflags.dropshadow+fontflags.antialiasing)]
+var marker_font = [render.create_font("verdana", 18, 500, fontflags.antialiasing),render.create_font("verdana", 13, 400, fontflags.dropshadow+fontflags.antialiasing)]
 var bPoint = function(pos, damage, time)
 {   
     var this_type = { pos : pos || vector(), damage : damage || 0, time : time || g_globals.get_curtime( )}
