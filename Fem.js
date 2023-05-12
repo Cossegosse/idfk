@@ -1168,6 +1168,7 @@ function bRenderImpact()
     impacts[impacts.length] = vec
 }
 add_callback("bullet_impact", "bRenderImpact")
+
 function bPlayerHurt()
 {   
     var lp = g_entity.get_local_player( )
